@@ -1,8 +1,9 @@
-package com.example.moviesapp
+package com.example.moviesapp.ui.moviedetails
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentMovieDetailBinding
 
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
