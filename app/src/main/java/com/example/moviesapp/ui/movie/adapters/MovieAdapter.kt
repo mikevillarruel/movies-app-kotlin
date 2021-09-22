@@ -1,4 +1,4 @@
-package com.example.moviesapp.ui.movie.adapters.concat
+package com.example.moviesapp.ui.movie.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -49,7 +49,7 @@ class MovieAdapter(
 
         override fun bind(item: Movie) {
             Glide.with(context)
-                .load("https://image.tmdb.org/t/p/w500${item.posterPath}").centerCrop()
+                .load("https://image.tmdb.org/t/p/w500${item.poster_path}").centerCrop()
                 .into(binding.imgMovie)
         }
 
