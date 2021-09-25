@@ -1,5 +1,6 @@
 package com.example.moviesapp.repository
 
+import com.example.moviesapp.core.InternetCheck
 import com.example.moviesapp.data.local.LocalMovieDataSource
 import com.example.moviesapp.data.model.MovieList
 import com.example.moviesapp.data.model.toMovieEntity
@@ -11,22 +12,28 @@ class MovieRepositoryImpl(
 ) : MovieRepository {
 
     override suspend fun getUpcomingMovies(): MovieList {
-        dataSourceRemote.getUpcomingMovies().results.forEach { movie ->
-            dataSourceLocal.saveMovie(movie.toMovieEntity("upcoming"))
+        if (InternetCheck.isNetworkAvailable()) {
+            dataSourceRemote.getUpcomingMovies().results.forEach { movie ->
+                dataSourceLocal.saveMovie(movie.toMovieEntity("upcoming"))
+            }
         }
         return dataSourceLocal.getUpcomingMovies()
     }
 
     override suspend fun getTopRatedMovies(): MovieList {
-        dataSourceRemote.getTopRatedMovies().results.forEach { movie ->
-            dataSourceLocal.saveMovie(movie.toMovieEntity("toprated"))
+        if (InternetCheck.isNetworkAvailable()) {
+            dataSourceRemote.getTopRatedMovies().results.forEach { movie ->
+                dataSourceLocal.saveMovie(movie.toMovieEntity("toprated"))
+            }
         }
         return dataSourceLocal.getTopRatedMovies()
     }
 
     override suspend fun getPopularMovies(): MovieList {
-        dataSourceRemote.getPopularMovies().results.forEach { movie ->
-            dataSourceLocal.saveMovie(movie.toMovieEntity("popular"))
+        if (InternetCheck.isNetworkAvailable()) {
+            dataSourceRemote.getPopularMovies().results.forEach { movie ->
+                dataSourceLocal.saveMovie(movie.toMovieEntity("popular"))
+            }
         }
         return dataSourceLocal.getPopularMovies()
     }
